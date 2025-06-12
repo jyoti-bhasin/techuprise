@@ -107,9 +107,75 @@
         /* Custom animation delays for blobs */
         .animation-delay-2000 { animation-delay: 2s; }
         .animation-delay-4000 { animation-delay: 4s; }
-        .animation-delay-6000 { animation-delay: 6s; } /* Added for third blob */
+        .animation-delay-6000 { animation-delay: 6s; }
+
+        /* New animations for relatable icons */
+        @keyframes rubberBand {
+            from { transform: scale3d(1, 1, 1); }
+            30% { transform: scale3d(1.25, 0.75, 1); }
+            40% { transform: scale3d(0.75, 1.25, 1); }
+            50% { transform: scale3d(1.15, 0.85, 1); }
+            65% { transform: scale3d(.95, 1.05, 1); }
+            75% { transform: scale3d(1.05, .95, 1); }
+            to { transform: scale3d(1, 1, 1); }
+        }
+        .animate-rubber-band:hover {
+            animation: rubberBand 1s;
+        }
+
+        @keyframes shake {
+            10%, 90% { transform: translate3d(-1px, 0, 0); }
+            20%, 80% { transform: translate3d(2px, 0, 0); }
+            30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
+            40%, 60% { transform: translate3d(4px, 0, 0); }
+        }
+        .animate-shake:hover {
+            animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        /* Fade-in on scroll animations */
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+            will-change: opacity, transform;
+        }
+
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Breathe animation for section borders */
+        @keyframes breathe-border {
+            0% { border-color: rgba(165, 180, 252, 0.5); }
+            50% { border-color: rgba(165, 180, 252, 1); }
+            100% { border-color: rgba(165, 180, 252, 0.5); }
+        }
+        .breathe-border {
+            animation: breathe-border 3s ease-in-out infinite;
+        }
+
+        /* Icon Swirl animation for social media icons */
+        @keyframes icon-swirl {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .icon-swirl-on-hover:hover .swirl-icon {
+            animation: icon-swirl 1s linear infinite;
+        }
+
     </style>
-    <!-- Phosphor Icons for better visual appeal -->
+    <!-- Phosphor Icons (fallback for general icons if needed) -->
     <script src="https://unpkg.com/@phosphor-icons/web@2.1.1/dist/phosphor.js"></script>
 </head>
 <body class="text-gray-800 antialiased leading-relaxed">
@@ -125,7 +191,7 @@
 
     <div class="container mx-auto px-4 py-12 md:py-20 max-w-5xl relative z-10">
         <!-- Hero Section -->
-        <section class="hero-section text-center mb-16 px-4 py-16 rounded-3xl shadow-xl border border-indigo-100">
+        <section class="hero-section text-center mb-16 px-4 py-16 rounded-3xl shadow-xl border border-indigo-100 fade-in-section">
             <h1 class="text-5xl md:text-7xl font-extrabold text-gray-900 leading-tight mb-6 tracking-tight">
                 Tired of the Internship Hunt?
                 <br><span class="text-indigo-600 inline-block animate-pulse-grow">Your Next Break Awaits.</span>
@@ -133,19 +199,15 @@
             <p class="text-xl md:text-2xl text-gray-600 mb-10 max-w-3xl mx-auto">
                 No more endless applications for "entry-level" roles that demand years of experience. We cut through the noise to bring you <strong class="text-indigo-700">genuine internship opportunities.</strong>
             </p>
-            <!-- Enhanced Hero Graphic with Phosphor Icon -->
-            <div class="relative w-full max-w-sm mx-auto h-40 bg-indigo-200 bg-opacity-40 rounded-full flex items-center justify-center shadow-2xl overflow-hidden">
-                <div class="absolute inset-0 bg-gradient-to-r from-indigo-300 to-purple-300 opacity-50 rounded-full blur-2xl animate-pulse"></div>
-                <div class="absolute inset-0 bg-gradient-to-l from-purple-300 to-pink-300 opacity-50 rounded-full blur-2xl animate-pulse-grow" style="animation-delay: 1s;"></div>
-                <i class="ph-fill ph-paper-plane-tilt text-indigo-700 relative z-10 text-8xl md:text-9xl animate-bounce" style="animation-duration: 2.5s;"></i>
-            </div>
+            <!-- Simplified Hero Graphic: Removed the 'blank button' div, kept only the icon -->
+            <i class="ph-fill ph-paper-plane-tilt text-indigo-700 text-8xl md:text-9xl animate-bounce mx-auto block mb-4" style="animation-duration: 2.5s;"></i>
             <p class="text-base text-gray-500 mt-4">*(Hint: Your dream internship could be in your inbox soon!)*</p>
         </section>
 
         <hr class="my-16 border-t-2 border-indigo-200 opacity-60">
 
         <!-- Prominent Call to Action Section (Moved Higher) -->
-        <section class="text-center mb-16 px-4 py-8 bg-white rounded-3xl shadow-2xl border border-purple-100 animate-subtle-pulse">
+        <section class="text-center mb-16 px-4 py-8 bg-white rounded-3xl shadow-2xl border border-purple-100 animate-subtle-pulse breathe-border fade-in-section">
             <h2 class="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight mb-6">
                 Ready for a <span class="animate-gradient-text">Real Opportunity?</span>
             </h2>
@@ -166,14 +228,39 @@
 
         <hr class="my-16 border-t-2 border-indigo-200 opacity-60">
 
-        <!-- Introduction Section -->
-        <section class="mb-16 px-4">
-            <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-8 text-center leading-tight">We've Been Exactly Where You Are.</h2>
-            <p class="text-lg md:text-xl text-gray-700 leading-relaxed mb-6">
-                If you're stuck in the frustrating cycle of sending out countless applications, waiting on replies, or just feeling overwhelmed by the "entry-level" roles that surprisingly demand years of experience — <strong class="text-indigo-700">I genuinely see you.</strong>
+        <!-- Ever Feel Like This? - New Section for Relatable Humor with Images -->
+        <section class="mb-16 px-4 fade-in-section">
+            <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-8 text-center leading-tight">Ever Feel Like This? (We Definitely Do!)</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+                <div class="bg-white p-6 rounded-xl shadow-md border border-gray-100 transform hover:-translate-y-1 transition-transform duration-300">
+                    <img src="https://placehold.co/120x120/E53E3E/FFFFFF?text=WHY+ME%3F" alt="Confused programmer meme" class="w-32 h-32 object-contain mx-auto mb-4 rounded-lg animate-shake">
+                    <p class="text-lg font-semibold text-gray-800">Debugging code that *should* work (but secretly hates you).</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md border border-gray-100 transform hover:-translate-y-1 transition-transform duration-300">
+                    <img src="https://placehold.co/120x120/6B46C1/FFFFFF?text=RESUME+STACK" alt="Mountain of resumes meme" class="w-32 h-32 object-contain mx-auto mb-4 rounded-lg animate-rubber-band">
+                    <p class="text-lg font-semibold text-gray-800">My resume inbox vs. my actual inbox (a true tragedy).</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md border border-gray-100 transform hover:-translate-y-1 transition-transform duration-300">
+                    <img src="https://placehold.co/120x120/A0AEC0/FFFFFF?text=HELLO%3F" alt="Waiting for reply meme" class="w-32 h-32 object-contain mx-auto mb-4 rounded-lg animate-float">
+                    <p class="text-lg font-semibold text-gray-800">Getting ghosted after a 'great' interview (did I just talk to a wall?).</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md border border-gray-100 transform hover:-translate-y-1 transition-transform duration-300">
+                    <img src="https://placehold.co/120x120/38B2AC/FFFFFF?text=EXPERIENCE+REQUIRED" alt="Shocked face entry level meme" class="w-32 h-32 object-contain mx-auto mb-4 rounded-lg animate-shake" style="animation-delay: 0.2s;">
+                    <p class="text-lg font-semibold text-gray-800">Drowning in generic job portals, seeing 'Entry-Level: 5 Years Experience'.</p>
+                </div>
+            </div>
+            <p class="text-xl md:text-2xl text-gray-700 mt-12 text-center font-semibold">
+                Yeah, we've been there. Let's make that a thing of the past.
             </p>
-            <p class="text-lg md:text-xl text-gray-700 leading-relaxed mb-8">
-                I’ve walked that path too. That’s why I created this: a curated list of <strong class="text-indigo-700">real internship links</strong> that often fly under the radar. These aren't the ones shouted about everywhere; they're the hidden gems that could truly be your next big career leap.
+        </section>
+
+        <hr class="my-16 border-t-2 border-indigo-200 opacity-60">
+
+        <!-- Introduction Section - Content moved slightly to accommodate new section -->
+        <section class="mb-16 px-4 fade-in-section">
+            <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-8 text-center leading-tight">Our Story: Why This Matters.</h2>
+            <p class="text-lg md:text-xl text-gray-700 leading-relaxed mb-6">
+                I’ve walked that frustrating path too. That’s why I created this: a curated list of <strong class="text-indigo-700">real internship links</strong> that often fly under the radar. These aren't the ones shouted about everywhere; they're the hidden gems that could truly be your next big career leap.
             </p>
             <p class="text-2xl md:text-3xl font-extrabold text-indigo-700 text-center px-6 py-5 bg-indigo-100 rounded-xl shadow-lg border border-indigo-200">
                 🚫 No Drama. 🚫 No Funnel. 🚫 No Spam. <br> Just a powerful nudge in the right direction.
@@ -183,21 +270,21 @@
         <hr class="my-16 border-t-2 border-indigo-200 opacity-60">
 
         <!-- What happens when you subscribe Section -->
-        <section class="mb-16 px-4">
+        <section class="mb-16 px-4 fade-in-section">
             <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-8 text-center leading-tight">Imagine Your Inbox, Transformed.</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
                 <div class="bg-white p-8 rounded-xl shadow-xl hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 border border-gray-100">
-                    <i class="ph-fill ph-rocket-launch text-6xl text-purple-600 mb-4 block"></i>
+                    <i class="ph-fill ph-rocket-launch text-6xl text-purple-600 mb-4 block animate-float"></i>
                     <p class="text-xl font-semibold text-gray-800">Exclusive, Genuine Opportunities</p>
                     <p class="text-md text-gray-600 mt-2">Discover internships you won't find on generic job boards.</p>
                 </div>
                 <div class="bg-white p-8 rounded-xl shadow-xl hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 border border-gray-100">
-                    <i class="ph-fill ph-link-simple text-6xl text-blue-600 mb-4 block"></i>
+                    <i class="ph-fill ph-link-simple text-6xl text-blue-600 mb-4 block animate-rubber-band"></i>
                     <p class="text-xl font-semibold text-gray-800">Direct, Verified Application Links</p>
                     <p class="text-md text-gray-600 mt-2">Apply immediately, with no dead ends or unnecessary hoops.</p>
                 </div>
                 <div class="bg-white p-8 rounded-xl shadow-xl hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 border border-gray-100">
-                    <i class="ph-fill ph-heart-straight text-6xl text-pink-600 mb-4 block"></i>
+                    <i class="ph-fill ph-heart-straight text-6xl text-pink-600 mb-4 block animate-shake"></i>
                     <p class="text-xl font-semibold text-gray-800">A Regular Dose of Hope</p>
                     <p class="text-md text-gray-600 mt-2">Transform your inbox from rejection central to opportunity hub.</p>
                 </div>
@@ -209,21 +296,21 @@
 
         <hr class="my-16 border-t-2 border-indigo-200 opacity-60">
 
-        <!-- This is for you if Section -->
-        <section class="mb-16 px-4">
-            <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-8 text-center leading-tight">This Is For You If:</h2>
+        <!-- This is for you if Section - Original content adjusted slightly -->
+        <section class="mb-16 px-4 fade-in-section">
+            <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-8 text-center leading-tight">This Is For You If You're Ready To:</h2>
             <ul class="space-y-6 text-center text-xl md:text-2xl text-gray-700 max-w-3xl mx-auto">
                 <li class="p-5 bg-white rounded-xl shadow-md border border-gray-200 flex items-center justify-center">
-                    <i class="ph ph-sparkle text-3xl text-yellow-500 mr-3"></i>
-                    <p>You’re <strong class="text-indigo-700">building, learning, and growing</strong> — you just need that critical first chance.</p>
+                    <i class="ph ph-sparkle text-3xl text-yellow-500 mr-3 animate-float" style="animation-delay: 0.2s;"></i>
+                    <p>Go from <strong class="text-indigo-700">"building & learning"</strong> to <strong class="text-indigo-700">"landing & growing."</strong></p>
                 </li>
                 <li class="p-5 bg-white rounded-xl shadow-md border border-gray-200 flex items-center justify-center">
-                    <i class="ph ph-cloud-slash text-3xl text-red-500 mr-3"></i>
-                    <p>You’re <strong class="text-indigo-700">tired of generic job portals</strong> and the absurdity of "entry-level" nonsense.</p>
+                    <i class="ph ph-cloud-slash text-3xl text-red-500 mr-3 animate-shake" style="animation-delay: 0.4s;"></i>
+                    <p>Say goodbye to generic job portals and the "entry-level" nonsense.</p>
                 </li>
                 <li class="p-5 bg-white rounded-xl shadow-md border border-gray-200 flex items-center justify-center">
-                    <i class="ph ph-fist-clenched text-3xl text-green-600 mr-3"></i>
-                    <p>You're <strong class="text-indigo-700">not giving up</strong> on your dreams (even when it feels like the easier option).</p>
+                    <i class="ph ph-fist-clenched text-3xl text-green-600 mr-3 animate-rubber-band" style="animation-delay: 0.6s;"></i>
+                    <p>Stop giving up (even when it feels like the easier option).</p>
                 </li>
             </ul>
             <p class="text-xl md:text-2xl text-gray-700 mt-12 text-center font-semibold">
@@ -234,17 +321,17 @@
         <hr class="my-16 border-t-2 border-indigo-200 opacity-60">
 
         <!-- Social Links Section -->
-        <section class="text-center px-4">
+        <section class="text-center px-4 fade-in-section">
             <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-8 leading-tight">Let's Connect Beyond the Inbox:</h2>
             <div class="flex flex-col md:flex-row justify-center space-y-4 md:space-y-0 md:space-x-8">
                 <a href="https://www.linkedin.com/in/jyoti-bhasin-7840991ba" target="_blank" rel="noopener noreferrer"
-                   class="inline-flex items-center justify-center text-indigo-600 hover:text-indigo-800 transition-colors duration-200 text-xl font-medium rounded-full py-4 px-8 bg-white shadow-lg hover:shadow-xl transform hover:-translate-y-1 group border-2 border-indigo-300">
-                    <i class="ph-fill ph-linkedin-logo text-3xl mr-3 group-hover:text-indigo-700"></i>
+                   class="inline-flex items-center justify-center text-indigo-600 hover:text-indigo-800 transition-colors duration-200 text-xl font-medium rounded-full py-4 px-8 bg-white shadow-lg hover:shadow-xl transform hover:-translate-y-1 group border-2 border-indigo-300 icon-swirl-on-hover">
+                    <i class="ph-fill ph-linkedin-logo text-3xl mr-3 group-hover:text-indigo-700 swirl-icon"></i>
                     Connect on LinkedIn
                 </a>
                 <a href="https://telegram.me/TechUprise_Updates" target="_blank" rel="noopener noreferrer"
-                   class="inline-flex items-center justify-center text-blue-600 hover:text-blue-800 transition-colors duration-200 text-xl font-medium rounded-full py-4 px-8 bg-white shadow-lg hover:shadow-xl transform hover:-translate-y-1 group border-2 border-blue-300">
-                    <i class="ph-fill ph-telegram-logo text-3xl mr-3 group-hover:text-blue-700"></i>
+                   class="inline-flex items-center justify-center text-blue-600 hover:text-blue-800 transition-colors duration-200 text-xl font-medium rounded-full py-4 px-8 bg-white shadow-lg hover:shadow-xl transform hover:-translate-y-1 group border-2 border-blue-300 icon-swirl-on-hover">
+                    <i class="ph-fill ph-telegram-logo text-3xl mr-3 group-hover:text-blue-700 swirl-icon"></i>
                     Join Our Telegram Community (39k+)
                 </a>
             </div>
@@ -254,5 +341,29 @@
             <p>&copy; 2025 TechUprise Updates. All rights reserved.</p>
         </footer>
     </div>
+
+    <script>
+        // Intersection Observer for fade-in effect
+        const fadeInSections = document.querySelectorAll('.fade-in-section');
+
+        const observerOptions = {
+            root: null, // viewport
+            rootMargin: '0px',
+            threshold: 0.1 // 10% of the section must be visible to trigger
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target); // Stop observing once animated
+                }
+            });
+        }, observerOptions);
+
+        fadeInSections.forEach(section => {
+            observer.observe(section);
+        });
+    </script>
 </body>
 </html>
