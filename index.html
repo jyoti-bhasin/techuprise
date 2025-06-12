@@ -174,9 +174,29 @@
             animation: icon-swirl 1s linear infinite;
         }
 
+        /* 3D Tilt Effect for cards */
+        .tilt-card {
+            transform-style: preserve-3d;
+            transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+        }
+        .tilt-card:hover {
+            transform: perspective(1000px) rotateX(5deg) rotateY(5deg) scale(1.02);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+        .tilt-card:hover .lottie-player-container {
+            transform: translateZ(20px); /* Bring Lottie player forward */
+        }
+        .lottie-player-container {
+            width: 120px; /* Lottie player width */
+            height: 120px; /* Lottie player height */
+            margin: 0 auto 1rem; /* Center and add margin */
+            transition: transform 0.3s ease-out; /* Smooth transition for Lottie */
+        }
     </style>
     <!-- Phosphor Icons (fallback for general icons if needed) -->
     <script src="https://unpkg.com/@phosphor-icons/web@2.1.1/dist/phosphor.js"></script>
+    <!-- Lottie Player CDN -->
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 </head>
 <body class="text-gray-800 antialiased leading-relaxed">
     <!-- Floating background elements for extra visual appeal and movement -->
@@ -217,40 +237,25 @@
             <h3 class="text-3xl md:text-5xl font-extrabold text-indigo-700 mb-8 animate-pulse-grow" style="animation-duration: 1.5s;">
                 Don't Miss Your Next Break.<br> <span class="animate-gradient-text">Subscribe Now!</span>
             </h3>
+
+            <!-- NEW: Lucrative benefit before subscribe embed -->
+            <div class="bg-indigo-50 p-6 rounded-xl border border-indigo-200 mb-8 max-w-2xl mx-auto">
+                <i class="ph-fill ph-check-circle text-5xl text-green-600 mb-4 block mx-auto animate-float"></i>
+                <p class="text-2xl md:text-3xl font-bold text-indigo-800">
+                    Immediately receive a carefully curated internship sheet and latest openings straight to your inbox!
+                </p>
+                <p class="text-lg text-gray-700 mt-2">
+                    No more endless searching – just direct access to your next big career move.
+                </p>
+            </div>
+            <!-- END NEW -->
+
             <!-- Substack Embed Code -->
             <div class="substack-embed-container">
                 <iframe src="https://techupriseupdates.substack.com/embed" frameborder="0" scrolling="no"></iframe>
             </div>
             <p class="text-sm text-gray-500 mt-8">
                 *We respect your privacy. No spam, ever.*
-            </p>
-        </section>
-
-        <hr class="my-16 border-t-2 border-indigo-200 opacity-60">
-
-        <!-- Ever Feel Like This? - New Section for Relatable Humor with Images -->
-        <section class="mb-16 px-4 fade-in-section">
-            <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-8 text-center leading-tight">Ever Feel Like This? (We Definitely Do!)</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
-                <div class="bg-white p-6 rounded-xl shadow-md border border-gray-100 transform hover:-translate-y-1 transition-transform duration-300">
-                    <img src="https://placehold.co/120x120/E53E3E/FFFFFF?text=WHY+ME%3F" alt="Confused programmer meme" class="w-32 h-32 object-contain mx-auto mb-4 rounded-lg animate-shake">
-                    <p class="text-lg font-semibold text-gray-800">Debugging code that *should* work (but secretly hates you).</p>
-                </div>
-                <div class="bg-white p-6 rounded-xl shadow-md border border-gray-100 transform hover:-translate-y-1 transition-transform duration-300">
-                    <img src="https://placehold.co/120x120/6B46C1/FFFFFF?text=RESUME+STACK" alt="Mountain of resumes meme" class="w-32 h-32 object-contain mx-auto mb-4 rounded-lg animate-rubber-band">
-                    <p class="text-lg font-semibold text-gray-800">My resume inbox vs. my actual inbox (a true tragedy).</p>
-                </div>
-                <div class="bg-white p-6 rounded-xl shadow-md border border-gray-100 transform hover:-translate-y-1 transition-transform duration-300">
-                    <img src="https://placehold.co/120x120/A0AEC0/FFFFFF?text=HELLO%3F" alt="Waiting for reply meme" class="w-32 h-32 object-contain mx-auto mb-4 rounded-lg animate-float">
-                    <p class="text-lg font-semibold text-gray-800">Getting ghosted after a 'great' interview (did I just talk to a wall?).</p>
-                </div>
-                <div class="bg-white p-6 rounded-xl shadow-md border border-gray-100 transform hover:-translate-y-1 transition-transform duration-300">
-                    <img src="https://placehold.co/120x120/38B2AC/FFFFFF?text=EXPERIENCE+REQUIRED" alt="Shocked face entry level meme" class="w-32 h-32 object-contain mx-auto mb-4 rounded-lg animate-shake" style="animation-delay: 0.2s;">
-                    <p class="text-lg font-semibold text-gray-800">Drowning in generic job portals, seeing 'Entry-Level: 5 Years Experience'.</p>
-                </div>
-            </div>
-            <p class="text-xl md:text-2xl text-gray-700 mt-12 text-center font-semibold">
-                Yeah, we've been there. Let's make that a thing of the past.
             </p>
         </section>
 
