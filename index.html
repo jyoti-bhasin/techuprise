@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Next Internship is Waiting.</title>
+    <!-- Inter Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom styles for the iframe to ensure it's responsive and centered */
+        .substack-embed-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%; /* Ensure container takes full width */
+            max-width: 480px; /* Max width matching iframe width */
+            margin: 0 auto; /* Center the container */
+        }
+        .substack-embed-container iframe {
+            width: 100%; /* Make iframe responsive within its container */
+            max-width: 480px; /* Original max width for desktop */
+            height: 320px; /* Fixed height as per embed code */
+            border: 1px solid #EEE;
+            background:white;
+            border-radius: 1rem; /* Even more rounded corners */
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.05); /* Stronger soft shadow */
+            transition: all 0.3s ease-in-out;
+        }
+        .substack-embed-container iframe:hover {
+            transform: translateY(-5px) scale(1.01);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden; /* Prevent horizontal scroll from background effects */
+            /* Main page background with fixed attachment for parallax effect */
+            background: linear-gradient(to bottom right, #eef2ff, #f3e8ff); /* light indigo to light purple */
+            background-attachment: fixed; /* This creates the parallax effect on scroll */
+            background-size: cover;
+            background-position: center center;
+        }
+
+        /* Hero Section Background Animation */
+        .hero-section {
+            position: relative;
+            z-index: 1; /* Ensure hero content is above floating elements */
+            overflow: hidden;
+            background: radial-gradient(circle at top left, rgba(165, 180, 252, 0.1), transparent 50%),
+                        radial-gradient(circle at bottom right, rgba(232, 121, 249, 0.1), transparent 50%);
+            background-size: 200% 200%;
+            animation: background-pan 15s ease infinite alternate;
+        }
+
+        @keyframes background-pan {
+            0% { background-position: 0% 0%; }
+            100% { background-position: 100% 100%; }
+        }
+
+        /* Custom animation for the hero icon and pulsing text */
+        @keyframes pulse-grow {
+            0% { transform: scale(1); opacity: 0.7; }
+            50% { transform: scale(1.05); opacity: 1; }
+            100% { transform: scale(1); opacity: 0.7; }
+        }
+        .animate-pulse-grow {
+            animation: pulse-grow 2s ease-in-out infinite;
+        }
+
+        /* Text gradient animation */
+        .animate-gradient-text {
+            background: linear-gradient(90deg, #6366f1, #9333ea, #ec4899);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: text-gradient-animation 4s linear infinite;
+        }
+
+        @keyframes text-gradient-animation {
+            to {
+                background-position: 200% center;
+            }
+        }
+
+        /* Pulse animation for the subscribe section */
+        @keyframes subtle-pulse {
+            0% { box-shadow: 0 0 0 0 rgba(165, 180, 252, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(165, 180, 252, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(165, 180, 252, 0); }
+        }
+        .animate-subtle-pulse {
+            animation: subtle-pulse 2s infinite;
+        }
+
+        /* Floating blob animation */
+        @keyframes blob-move {
+            0% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(30px, -50px) scale(1.1); }
+            66% { transform: translate(-20px, 20px) scale(0.9); }
+            100% { transform: translate(0, 0) scale(1); }
+        }
+        .animate-blob {
+            animation: blob-move 12s infinite ease-in-out alternate;
+        }
+        /* Custom animation delays for blobs */
+        .animation-delay-2000 { animation-delay: 2s; }
+        .animation-delay-4000 { animation-delay: 4s; }
+        .animation-delay-6000 { animation-delay: 6s; } /* Added for third blob */
+    </style>
+    <!-- Phosphor Icons for better visual appeal -->
+    <script src="https://unpkg.com/@phosphor-icons/web@2.1.1/dist/phosphor.js"></script>
+</head>
+<body class="text-gray-800 antialiased leading-relaxed">
+    <!-- Floating background elements for extra visual appeal and movement -->
+    <div class="fixed inset-0 z-0 pointer-events-none overflow-hidden">
+        <!-- Floating blob 1 -->
+        <div class="absolute w-96 h-96 bg-purple-300 rounded-full mix-blend-multiply blur-2xl opacity-30 animate-blob" style="top: 10%; left: -5%;"></div>
+        <!-- Floating blob 2 -->
+        <div class="absolute w-80 h-80 bg-indigo-300 rounded-full mix-blend-multiply blur-2xl opacity-30 animate-blob animation-delay-2000" style="bottom: 15%; right: -10%;"></div>
+        <!-- Floating blob 3 -->
+        <div class="absolute w-72 h-72 bg-pink-300 rounded-full mix-blend-multiply blur-2xl opacity-30 animate-blob animation-delay-4000" style="top: 30%; right: -5%;"></div>
+    </div>
+
+    <div class="container mx-auto px-4 py-12 md:py-20 max-w-5xl relative z-10">
+        <!-- Hero Section -->
+        <section class="hero-section text-center mb-16 px-4 py-16 rounded-3xl shadow-xl border border-indigo-100">
+            <h1 class="text-5xl md:text-7xl font-extrabold text-gray-900 leading-tight mb-6 tracking-tight">
+                Tired of the Internship Hunt?
+                <br><span class="text-indigo-600 inline-block animate-pulse-grow">Your Next Break Awaits.</span>
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-600 mb-10 max-w-3xl mx-auto">
+                No more endless applications for "entry-level" roles that demand years of experience. We cut through the noise to bring you <strong class="text-indigo-700">genuine internship opportunities.</strong>
+            </p>
+            <!-- Enhanced Hero Graphic with Phosphor Icon -->
+            <div class="relative w-full max-w-sm mx-auto h-40 bg-indigo-200 bg-opacity-40 rounded-full flex items-center justify-center shadow-2xl overflow-hidden">
+                <div class="absolute inset-0 bg-gradient-to-r from-indigo-300 to-purple-300 opacity-50 rounded-full blur-2xl animate-pulse"></div>
+                <div class="absolute inset-0 bg-gradient-to-l from-purple-300 to-pink-300 opacity-50 rounded-full blur-2xl animate-pulse-grow" style="animation-delay: 1s;"></div>
+                <i class="ph-fill ph-paper-plane-tilt text-indigo-700 relative z-10 text-8xl md:text-9xl animate-bounce" style="animation-duration: 2.5s;"></i>
+            </div>
+            <p class="text-base text-gray-500 mt-4">*(Hint: Your dream internship could be in your inbox soon!)*</p>
+        </section>
+
+        <hr class="my-16 border-t-2 border-indigo-200 opacity-60">
+
+        <!-- Prominent Call to Action Section (Moved Higher) -->
+        <section class="text-center mb-16 px-4 py-8 bg-white rounded-3xl shadow-2xl border border-purple-100 animate-subtle-pulse">
+            <h2 class="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight mb-6">
+                Ready for a <span class="animate-gradient-text">Real Opportunity?</span>
+            </h2>
+            <p class="text-xl md:text-2xl text-gray-700 mb-10 max-w-3xl mx-auto">
+                If you read this and felt a spark, if it resonated with your journey, then <strong class="text-indigo-700">I’m genuinely thrilled you’re here.</strong>
+            </p>
+            <h3 class="text-3xl md:text-5xl font-extrabold text-indigo-700 mb-8 animate-pulse-grow" style="animation-duration: 1.5s;">
+                Don't Miss Your Next Break.<br> <span class="animate-gradient-text">Subscribe Now!</span>
+            </h3>
+            <!-- Substack Embed Code -->
+            <div class="substack-embed-container">
+                <iframe src="https://techupriseupdates.substack.com/embed" frameborder="0" scrolling="no"></iframe>
+            </div>
+            <p class="text-sm text-gray-500 mt-8">
+                *We respect your privacy. No spam, ever.*
+            </p>
+        </section>
+
+        <hr class="my-16 border-t-2 border-indigo-200 opacity-60">
+
+        <!-- Introduction Section -->
+        <section class="mb-16 px-4">
+            <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-8 text-center leading-tight">We've Been Exactly Where You Are.</h2>
+            <p class="text-lg md:text-xl text-gray-700 leading-relaxed mb-6">
+                If you're stuck in the frustrating cycle of sending out countless applications, waiting on replies, or just feeling overwhelmed by the "entry-level" roles that surprisingly demand years of experience — <strong class="text-indigo-700">I genuinely see you.</strong>
+            </p>
+            <p class="text-lg md:text-xl text-gray-700 leading-relaxed mb-8">
+                I’ve walked that path too. That’s why I created this: a curated list of <strong class="text-indigo-700">real internship links</strong> that often fly under the radar. These aren't the ones shouted about everywhere; they're the hidden gems that could truly be your next big career leap.
+            </p>
+            <p class="text-2xl md:text-3xl font-extrabold text-indigo-700 text-center px-6 py-5 bg-indigo-100 rounded-xl shadow-lg border border-indigo-200">
+                🚫 No Drama. 🚫 No Funnel. 🚫 No Spam. <br> Just a powerful nudge in the right direction.
+            </p>
+        </section>
+
+        <hr class="my-16 border-t-2 border-indigo-200 opacity-60">
+
+        <!-- What happens when you subscribe Section -->
+        <section class="mb-16 px-4">
+            <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-8 text-center leading-tight">Imagine Your Inbox, Transformed.</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                <div class="bg-white p-8 rounded-xl shadow-xl hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 border border-gray-100">
+                    <i class="ph-fill ph-rocket-launch text-6xl text-purple-600 mb-4 block"></i>
+                    <p class="text-xl font-semibold text-gray-800">Exclusive, Genuine Opportunities</p>
+                    <p class="text-md text-gray-600 mt-2">Discover internships you won't find on generic job boards.</p>
+                </div>
+                <div class="bg-white p-8 rounded-xl shadow-xl hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 border border-gray-100">
+                    <i class="ph-fill ph-link-simple text-6xl text-blue-600 mb-4 block"></i>
+                    <p class="text-xl font-semibold text-gray-800">Direct, Verified Application Links</p>
+                    <p class="text-md text-gray-600 mt-2">Apply immediately, with no dead ends or unnecessary hoops.</p>
+                </div>
+                <div class="bg-white p-8 rounded-xl shadow-xl hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 border border-gray-100">
+                    <i class="ph-fill ph-heart-straight text-6xl text-pink-600 mb-4 block"></i>
+                    <p class="text-xl font-semibold text-gray-800">A Regular Dose of Hope</p>
+                    <p class="text-md text-gray-600 mt-2">Transform your inbox from rejection central to opportunity hub.</p>
+                </div>
+            </div>
+            <p class="text-xl md:text-2xl text-gray-700 mt-12 text-center font-medium">
+                That's it. Simple, impactful, and designed to help you succeed.
+            </p>
+        </section>
+
+        <hr class="my-16 border-t-2 border-indigo-200 opacity-60">
+
+        <!-- This is for you if Section -->
+        <section class="mb-16 px-4">
+            <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-8 text-center leading-tight">This Is For You If:</h2>
+            <ul class="space-y-6 text-center text-xl md:text-2xl text-gray-700 max-w-3xl mx-auto">
+                <li class="p-5 bg-white rounded-xl shadow-md border border-gray-200 flex items-center justify-center">
+                    <i class="ph ph-sparkle text-3xl text-yellow-500 mr-3"></i>
+                    <p>You’re <strong class="text-indigo-700">building, learning, and growing</strong> — you just need that critical first chance.</p>
+                </li>
+                <li class="p-5 bg-white rounded-xl shadow-md border border-gray-200 flex items-center justify-center">
+                    <i class="ph ph-cloud-slash text-3xl text-red-500 mr-3"></i>
+                    <p>You’re <strong class="text-indigo-700">tired of generic job portals</strong> and the absurdity of "entry-level" nonsense.</p>
+                </li>
+                <li class="p-5 bg-white rounded-xl shadow-md border border-gray-200 flex items-center justify-center">
+                    <i class="ph ph-fist-clenched text-3xl text-green-600 mr-3"></i>
+                    <p>You're <strong class="text-indigo-700">not giving up</strong> on your dreams (even when it feels like the easier option).</p>
+                </li>
+            </ul>
+            <p class="text-xl md:text-2xl text-gray-700 mt-12 text-center font-semibold">
+                My goal isn't to flood your inbox. It's to ensure it's overflowing with opportunities, not just rejection emails.
+            </p>
+        </section>
+
+        <hr class="my-16 border-t-2 border-indigo-200 opacity-60">
+
+        <!-- Social Links Section -->
+        <section class="text-center px-4">
+            <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-8 leading-tight">Let's Connect Beyond the Inbox:</h2>
+            <div class="flex flex-col md:flex-row justify-center space-y-4 md:space-y-0 md:space-x-8">
+                <a href="https://www.linkedin.com/in/jyoti-bhasin-7840991ba" target="_blank" rel="noopener noreferrer"
+                   class="inline-flex items-center justify-center text-indigo-600 hover:text-indigo-800 transition-colors duration-200 text-xl font-medium rounded-full py-4 px-8 bg-white shadow-lg hover:shadow-xl transform hover:-translate-y-1 group border-2 border-indigo-300">
+                    <i class="ph-fill ph-linkedin-logo text-3xl mr-3 group-hover:text-indigo-700"></i>
+                    Connect on LinkedIn
+                </a>
+                <a href="https://telegram.me/TechUprise_Updates" target="_blank" rel="noopener noreferrer"
+                   class="inline-flex items-center justify-center text-blue-600 hover:text-blue-800 transition-colors duration-200 text-xl font-medium rounded-full py-4 px-8 bg-white shadow-lg hover:shadow-xl transform hover:-translate-y-1 group border-2 border-blue-300">
+                    <i class="ph-fill ph-telegram-logo text-3xl mr-3 group-hover:text-blue-700"></i>
+                    Join Our Telegram Community (39k+)
+                </a>
+            </div>
+        </section>
+
+        <footer class="mt-20 text-center text-gray-500 text-sm">
+            <p>&copy; 2025 TechUprise Updates. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>
